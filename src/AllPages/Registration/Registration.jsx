@@ -1,13 +1,17 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form"
+import loginImage from '../../assets/login.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
+import SectionTitle from '../../components/SectionTitle';
 
 const Registration = () => {
 
     const [error, setError] = useState('');
-    const { signUpWithEmail, signInWithGoogle, updateUserProfile } = useContext(AuthContext)
+    const { signUpWithEmail, signInWithGoogle, updateUserProfile } = useContext(AuthContext);
+    const [confirmPassword, setConfirmPassword] = useState('');
+
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -22,6 +26,10 @@ const Registration = () => {
     } = useForm()
 
     const onSubmit = (data) => {
+        if (data.password !== data.confirmPassword) {
+            setError('Passwords do not match');
+            return;
+        }
         // console.log(data)
         signUpWithEmail(data.email, data.password)
             .then(result => {
@@ -64,56 +72,72 @@ const Registration = () => {
     }
 
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto md:py-28'>
+            <div className='text-center'>
+                <SectionTitle title='Please Register!' subTitle='Register for get more access.'></SectionTitle>
+            </div>
 
-            <div className='grid items-center md:grid-cols-2 md:gap-5 md:py-28 py-2 '>
+            <div className='grid items-center md:grid-cols-2 md:gap-5 '>
                 <div className='order-2 md:order-1'>
-                    {/* <Lottie className='w-[300px] md:w-[500px] mx-auto' animationData={yogaAnimation} loop={true} /> */}
+                    <img className='w-[300px] md:w-[500px] mx-auto' src={loginImage} alt="" />
                 </div>
                 <div className='order-1 md:order-2'>
                     <div className="hero min-h-screen">
-                        <div className="hero-content md:w-96 flex-col">
-                            <div className="text-center mb-5">
-                                <h1 className="text-4xl font-bold">Please Sign Up!</h1>
-                            </div>
-                            <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                        <div className="hero-content flex-col">
+                            <div className="card flex-shrink-0 w-full shadow-2xl bg-base-100">
                                 <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                                     <div className='text-center'>
                                         <small className='text-red-500'>{error}</small>
                                     </div>
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text">Name</span>
-                                        </label>
-                                        <input className="input input-bordered" type='text' placeholder='Full name' {...register("name", { required: true })} />
-                                        {errors.name && <span className="text-red-500">Name is required</span>}
-                                    </div>
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text">Email</span>
-                                        </label>
-                                        <input className="input input-bordered" placeholder='Email' type='email' {...register("email", { required: true })} />
-                                        {errors.email && <span className="text-red-500">Email is required</span>}
+                                    <div className='md:flex md:gap-3'>
+                                        <div className="form-control">
+                                            <label className="label">
+                                                <span className="label-text">Name</span>
+                                            </label>
+                                            <input className="input input-bordered border-black" type='text' placeholder='Full name' {...register("name", { required: true })} />
+                                            {errors.name && <span className="text-red-500">Name is required</span>}
+                                        </div>
+                                        <div className="form-control">
+                                            <label className="label">
+                                                <span className="label-text">Email</span>
+                                            </label>
+                                            <input className="input input-bordered border-black" placeholder='Email' type='email' {...register("email", { required: true })} />
+                                            {errors.email && <span className="text-red-500">Email is required</span>}
+                                        </div>
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Photo URL</span>
                                         </label>
-                                        <input className="input input-bordered" placeholder='Photo URL' type='text' {...register("photo", { required: true })} />
+                                        <input className="input input-bordered border-black" placeholder='Photo URL' type='text' {...register("photo", { required: true })} />
                                         {errors.photo && <span className="text-red-500">Photo Url is required</span>}
                                     </div>
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text">Password</span>
-                                        </label>
-                                        <input className="input input-bordered" placeholder='password' type='password' {...register("password", { required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/ })} />
-                                        {errors.password && <span className="text-red-500">Password is required</span>}
-                                        {errors.password && errors.password.type === "pattern" && (
-                                            <span className="text-red-500">
-                                                Password must contain 6 characters and at least one uppercase letter, one lowercase letter and one number.
-                                            </span>
-                                        )}
+                                    <div className='md:flex md:gap-3'>
+                                        <div className="form-control">
+                                            <label className="label">
+                                                <span className="label-text">Password</span>
+                                            </label>
+                                            <input className="input input-bordered border-black" placeholder='Password' type='password' {...register("password", { required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/ })} />
+                                            {errors.password && <span className="text-red-500">Password is required</span>}
+                                            {errors.password && errors.password.type === "pattern" && (
+                                                <span className="text-red-500">
+                                                    Password must contain 6 characters and at least one uppercase letter, one lowercase letter and one number.
+                                                </span>
+                                            )}
 
+                                        </div>
+                                        <div className="form-control">
+                                            <label className="label">
+                                                <span className="label-text">Confirm Password</span>
+                                            </label>
+                                            <input className="input input-bordered border-black" placeholder='Confirm password' type='password'
+                                                {...register("confirmPassword", { required: true })}
+                                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                            />
+                                            {errors.confirmPassword && <span className="text-red-500">Confirm Password is required</span>}
+
+
+                                        </div>
                                     </div>
                                     <div className="form-control mt-6">
                                         <button className="btn btn-primary">Sign Up</button>

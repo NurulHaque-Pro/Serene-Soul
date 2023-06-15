@@ -1,12 +1,17 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
+import loginImage from '../../assets/login.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
+import SectionTitle from '../../components/SectionTitle';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
 
     const { signInWithEmail, signInWithGoogle } = useContext(AuthContext)
+
+    const [showPassword, setShowPassword] = useState(false);
 
     const [error, setError] = useState('')
 
@@ -71,19 +76,19 @@ const Login = () => {
     }
 
     return (
-        <div className='container mx-auto'>
+        <div className='container mx-auto md:py-28'>
+            <div className='text-center'>
+                <SectionTitle title='Please Login!' subTitle='Login for more access.'></SectionTitle>
+            </div>
 
-            <div className='grid items-center md:grid-cols-2 md:gap-5 bg-base-200 md:py-10 py-2 '>
+            <div className='grid items-center md:grid-cols-2 md:gap-5 '>
                 <div className='order-2 md:order-1'>
-                    {/* <Lottie className='w-[300px] md:w-[500px] mx-auto' animationData={truckAnimation} loop={true} /> */}
+                    <img className='w-[300px] md:w-[500px] mx-auto' src={loginImage} alt="" />
                 </div>
                 <div className='order-1 md:order-2'>
                     <div className="hero min-h-screen">
                         <div className="hero-content md:w-96 flex-col">
-                            <div className="text-center mb-5">
-                                <h1 className="text-4xl font-bold">Please Login!</h1>
-                            </div>
-                            <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                            <div className="card flex-shrink-0 w-full  shadow-2xl bg-base-100">
                                 <form onSubmit={handleLogin} className="card-body">
                                     <div className='text-center'>
                                         <small className='text-red-500'>{error}</small>
@@ -92,15 +97,21 @@ const Login = () => {
                                         <label className="label">
                                             <span className="label-text">Email</span>
                                         </label>
-                                        <input name='email' required type="email" placeholder="email" className="input input-bordered" />
+                                        <input name='email' required type="email" placeholder="email" className="input input-bordered border-black" />
                                     </div>
-                                    <div className="form-control">
+                                    <div className="form-control relative">
                                         <label className="label">
                                             <span className="label-text">Password</span>
                                         </label>
-                                        <input name='password' required type="password" placeholder="password" className="input input-bordered" />
-
+                                        <input
+                                            name="password" required  type={showPassword ? 'text' : 'password'}  placeholder="password" className="input input-bordered border-black pr-10"
+                                        />
+                                        <button type="button" className="absolute top-3/4 right-3 transform -translate-y-3/4 bg-transparent border-none outline-none cursor-pointer"
+                                            onClick={() => setShowPassword(!showPassword)} >
+                                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                        </button>
                                     </div>
+
                                     <div className="form-control mt-6">
                                         <button className="btn btn-primary">Login</button>
                                     </div>
