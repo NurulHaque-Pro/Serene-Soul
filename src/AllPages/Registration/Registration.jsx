@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 const Registration = () => {
 
     const [error, setError] = useState('');
-    const { signUpWithEmail } = useContext(AuthContext)
+    const { signUpWithEmail, signInWithGoogle } = useContext(AuthContext)
 
     const {
         register,
@@ -22,14 +22,28 @@ const Registration = () => {
             .then(result => {
                 const loggedInUser = result.user;
                 Swal.fire(
-                    '',
                     'User Created Successfully',
+                    '',
                     'success'
                 )
             })
             .catch(error => {
                 setError(error.message)
             })
+    }
+
+    const handleGoogleLogin = () =>{
+        signInWithGoogle()
+        .then(result => {
+            Swal.fire(
+                'Login Successfully',
+                '',
+                'success'
+            )
+        })
+        .catch(error =>{
+            setError(error.message)
+        })
     }
 
     return (
@@ -93,7 +107,7 @@ const Registration = () => {
                                 <div className='text-center pb-7'>
                                     <p>Or Sign In With</p>
                                     <div className='flex gap-3 justify-center'>
-                                        <button ><img className='w-8 pt-3' src="https://cdn-icons-png.flaticon.com/512/2702/2702602.png" alt="" /></button>
+                                        <button onClick={handleGoogleLogin}><img className='w-8 pt-3' src="https://cdn-icons-png.flaticon.com/512/2702/2702602.png" alt="" /></button>
                                     </div>
                                 </div>
                             </div>

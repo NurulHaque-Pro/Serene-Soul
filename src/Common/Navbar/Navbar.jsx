@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/Serene-soul-main-logo.png'
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const Navbar = () => {
+
+
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleSignOut = () => {
+        logOut();
+    }
 
     const navMenuItems = <>
         <li className=''>
@@ -14,6 +22,11 @@ const Navbar = () => {
         <li className=''>
             <NavLink to='/classes' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Classes</NavLink>
         </li>
+        {
+            user && <li className=''>
+                <NavLink to='/' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Dashboard</NavLink>
+            </li>
+        }
 
     </>
 
@@ -42,10 +55,18 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end gap-5">
 
-                    <NavLink to='/login' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Login</NavLink>
-
-
-                    <NavLink to='/register' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Sign up</NavLink>
+                    {
+                        user ?
+                            <>
+                                <div>
+                                    <img className='w-10 cursor-pointer rounded-full' src={user?.photoURL} alt="" />
+                                </div>
+                                <Link className=" font-medium text-[white] px-8 py-3 bg-primary border border-primary hover:bg-[#ff6a3d00] hover:text-primary rounded"><button onClick={handleSignOut}>Logout</button></Link></>
+                            :
+                            <>
+                                <Link to='/login' className=" font-medium text-[white] px-8 py-3 bg-primary border border-primary hover:bg-[#ff6a3d00] hover:text-primary rounded">Login</Link>
+                            </>
+                    }
 
                 </div>
             </div>

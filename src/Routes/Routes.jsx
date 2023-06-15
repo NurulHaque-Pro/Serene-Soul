@@ -7,6 +7,7 @@ import Instructors from "../AllPages/Instructors/Instructors";
 import Classes from "../AllPages/Classes/Classes";
 import Registration from "../AllPages/Registration/Registration";
 import Login from "../AllPages/Login/Login";
+import Page404 from "../AllPages/Page404/Page404";
 
   const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ import Login from "../AllPages/Login/Login";
         }
       ]
     },
+    {
+      path: '*',
+      element: <Page404></Page404>
+    }
   ]);
 
   export default router;
