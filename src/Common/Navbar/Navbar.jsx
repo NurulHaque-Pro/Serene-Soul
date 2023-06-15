@@ -14,6 +14,7 @@ const Navbar = () => {
         <li className=''>
             <NavLink to='/classes' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Classes</NavLink>
         </li>
+
     </>
 
     return (
@@ -40,6 +41,11 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end gap-5">
+
+                    <NavLink to='/login' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Login</NavLink>
+
+
+                    <NavLink to='/register' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Sign up</NavLink>
 
                 </div>
             </div>
