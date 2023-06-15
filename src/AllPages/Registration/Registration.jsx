@@ -1,13 +1,18 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form"
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
 
 const Registration = () => {
 
     const [error, setError] = useState('');
-    const { signUpWithEmail, signInWithGoogle } = useContext(AuthContext)
+    const { signUpWithEmail, signInWithGoogle, updateUserProfile } = useContext(AuthContext)
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location?.state?.from?.pathname || '/';
 
     const {
         register,
@@ -21,8 +26,34 @@ const Registration = () => {
         signUpWithEmail(data.email, data.password)
             .then(result => {
                 const loggedInUser = result.user;
+                console.log(loggedInUser);
+
+                updateUserProfile(data.name, data.photo)
+                    .then(() => {
+                        Swal.fire(
+                            'User Created Successfully',
+                            '',
+                            'success'
+                        )
+                        navigate(from, { replace: true });
+                        form.reset();
+                    })
+                    .catch(error => {
+                        setError(error.message)
+                    })
+
+            })
+            .catch(error => {
+                setError(error.message)
+            })
+    }
+
+
+    const handleGoogleLogin = () => {
+        signInWithGoogle()
+            .then(result => {
                 Swal.fire(
-                    'User Created Successfully',
+                    'Login Successfully',
                     '',
                     'success'
                 )
@@ -30,20 +61,6 @@ const Registration = () => {
             .catch(error => {
                 setError(error.message)
             })
-    }
-
-    const handleGoogleLogin = () =>{
-        signInWithGoogle()
-        .then(result => {
-            Swal.fire(
-                'Login Successfully',
-                '',
-                'success'
-            )
-        })
-        .catch(error =>{
-            setError(error.message)
-        })
     }
 
     return (
@@ -77,6 +94,13 @@ const Registration = () => {
                                         </label>
                                         <input className="input input-bordered" placeholder='Email' type='email' {...register("email", { required: true })} />
                                         {errors.email && <span className="text-red-500">Email is required</span>}
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Photo URL</span>
+                                        </label>
+                                        <input className="input input-bordered" placeholder='Photo URL' type='text' {...register("photo", { required: true })} />
+                                        {errors.photo && <span className="text-red-500">Photo Url is required</span>}
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
