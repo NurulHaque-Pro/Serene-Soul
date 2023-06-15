@@ -9,6 +9,8 @@ import "swiper/css/pagination";
 import slider1 from '../../assets/slider-bg1.jpg'
 import slider2 from '../../assets/slider-bg2.jpg'
 import slider3 from '../../assets/slider-bg3.jpg'
+import slider4 from '../../assets/slider-bg4.jpg'
+import slider5 from '../../assets/slider-bg5.jpg'
 
 import { Autoplay, Pagination, Navigation } from "swiper";
 
@@ -34,7 +36,7 @@ const HeaderSlider = () => {
                 className="mySwiper"
             >
                 <SwiperSlide style={{
-                    backgroundImage: `url(${slider2})`,
+                    backgroundImage: `url(${slider5})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
                 }}>
@@ -49,7 +51,7 @@ const HeaderSlider = () => {
                     </div>
                 </SwiperSlide>
                 <SwiperSlide style={{
-                    backgroundImage: `url(${slider3})`,
+                    backgroundImage: `url(${slider4})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
                 }}>
@@ -64,7 +66,7 @@ const HeaderSlider = () => {
                     </div>
                 </SwiperSlide>
                 <SwiperSlide style={{
-                    backgroundImage: `url(${slider1})`,
+                    backgroundImage: `url(${slider2})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
                 }}>
