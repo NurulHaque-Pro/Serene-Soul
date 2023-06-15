@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        dancing: ['Dancing Script', 'sans-serif'],
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
@@ -33,7 +37,11 @@ export default {
           'warning': '#ff9900',
           'error': '#ff5724',
         },
+
+
       },
+
+
     ],
   },
 }
