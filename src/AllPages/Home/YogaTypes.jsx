@@ -34,7 +34,7 @@ const YogaTypes = () => {
 
                             <div>
                                 <h3 className='text-lg'>2. Vinyasa Yoga</h3>
-                                <p className='text-primary'>Flowing, movement, breath synchronization.</p>
+                                <p className='text-primary'>Flowing, breath synchronization.</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-4'>
@@ -43,7 +43,7 @@ const YogaTypes = () => {
 
                             <div>
                                 <h3 className='text-lg'>3. Kundalini Yoga</h3>
-                                <p className='text-primary'> Energy awakening, dynamic movements.</p>
+                                <p className='text-primary'> Energy awakening, movements.</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-4'>
@@ -52,7 +52,7 @@ const YogaTypes = () => {
 
                             <div>
                                 <h3 className='text-lg'>4. Ashtanga Yoga</h3>
-                                <p className='text-primary'>Rigorous, specific sequence, strength.</p>
+                                <p className='text-primary'>Rigorous, sequence, strength.</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-4'>
@@ -61,7 +61,7 @@ const YogaTypes = () => {
 
                             <div>
                                 <h3 className='text-lg'>5. Yin Yoga</h3>
-                                <p className='text-primary'>Slow-paced, connective tissues, flexibility.</p>
+                                <p className='text-primary'>Slow-paced, flexibility.</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-4'>
@@ -70,7 +70,7 @@ const YogaTypes = () => {
 
                             <div>
                                 <h3 className='text-lg'>6. Restorative Yoga</h3>
-                                <p className='text-primary'>Relaxing, supported poses, tension release.</p>
+                                <p className='text-primary'>Relaxing, tension release.</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-4'>
@@ -79,7 +79,7 @@ const YogaTypes = () => {
 
                             <div>
                                 <h3 className='text-lg'>7. Mindfulness Meditation</h3>
-                                <p className='text-primary'>Present moment awareness, non-judgment.</p>
+                                <p className='text-primary'>Present moment awareness.</p>
                             </div>
                         </div>
                         <div className='flex items-center gap-4'>
@@ -87,7 +87,7 @@ const YogaTypes = () => {
                             <GiMeditation className='text-7xl bg-primary text-white p-3 rounded-full'></GiMeditation>
 
                             <div>
-                                <h3 className='text-lg'>8. Transcendental Meditation</h3>
+                                <h3 className='text-lg'>8. Transcendental</h3>
                                 <p className='text-primary'>Mantra repetition, deep relaxation.</p>
                             </div>
                         </div>

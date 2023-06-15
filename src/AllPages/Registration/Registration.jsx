@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form"
-import yogaAnimation from '../../assets/Yoga.json'
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2'
 
 const Registration = () => {
+
+    const [error, setError] = useState('');
+    const { signUpWithEmail } = useContext(AuthContext)
+
     const {
         register,
         handleSubmit,
@@ -12,7 +17,19 @@ const Registration = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data)
+        // console.log(data)
+        signUpWithEmail(data.email, data.password)
+            .then(result => {
+                const loggedInUser = result.user;
+                Swal.fire(
+                    '',
+                    'User Created Successfully',
+                    'success'
+                )
+            })
+            .catch(error => {
+                setError(error.message)
+            })
     }
 
     return (
@@ -20,7 +37,7 @@ const Registration = () => {
 
             <div className='grid items-center md:grid-cols-2 md:gap-5 md:py-28 py-2 '>
                 <div className='order-2 md:order-1'>
-                    {/* <Lottie className='w-[300px] md:w-[500px] mx-auto' animationData={truckAnimation} loop={true} /> */}
+                    {/* <Lottie className='w-[300px] md:w-[500px] mx-auto' animationData={yogaAnimation} loop={true} /> */}
                 </div>
                 <div className='order-1 md:order-2'>
                     <div className="hero min-h-screen">
@@ -30,9 +47,9 @@ const Registration = () => {
                             </div>
                             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                                 <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-                                    {/* <div className='text-center'>
+                                    <div className='text-center'>
                                         <small className='text-red-500'>{error}</small>
-                                    </div> */}
+                                    </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text">Name</span>
@@ -71,13 +88,14 @@ const Registration = () => {
                                             </p>
                                         </label>
                                     </div>
-                                    <div className='text-center pt-3'>
-                                        <p>Or Sign In With</p>
-                                        <div className='flex gap-3 justify-center'>
-                                            <button ><img className='w-8 pt-3' src="https://cdn-icons-png.flaticon.com/512/2702/2702602.png" alt="" /></button>
-                                        </div>
-                                    </div>
+
                                 </form>
+                                <div className='text-center pb-7'>
+                                    <p>Or Sign In With</p>
+                                    <div className='flex gap-3 justify-center'>
+                                        <button ><img className='w-8 pt-3' src="https://cdn-icons-png.flaticon.com/512/2702/2702602.png" alt="" /></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -85,19 +103,6 @@ const Registration = () => {
 
 
             </div>
-            {/* <form onSubmit={handleSubmit(onSubmit)}>
-
-                <input className="input input-bordered" type='text' {...register("name", { required: true })} />
-                {errors.name && <span>This field is required</span>}
-
-                <input className="input input-bordered" type='email' {...register("email", { required: true })} />
-                {errors.email && <span>This field is required</span>}
-
-                <input className="input input-bordered" type='password' {...register("password", { required: true })} />
-                {errors.password && <span>This field is required</span>}
-
-                <input className="input input-bordered" type="submit" />
-            </form> */}
         </div>
     );
 };
