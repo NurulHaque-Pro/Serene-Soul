@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
 import SectionTitle from '../../components/SectionTitle';
+import { Helmet } from 'react-helmet-async';
 
 const Registration = () => {
 
@@ -73,6 +74,9 @@ const Registration = () => {
 
     return (
         <div className='container mx-auto md:py-28'>
+            <Helmet>
+                <title>Serene Soul | Register</title>
+            </Helmet>
             <div className='text-center'>
                 <SectionTitle title='Please Register!' subTitle='Register for get more access.'></SectionTitle>
             </div>

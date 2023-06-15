@@ -6,6 +6,7 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
 import SectionTitle from '../../components/SectionTitle';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
 
@@ -77,6 +78,11 @@ const Login = () => {
 
     return (
         <div className='container mx-auto md:py-28'>
+            <div>
+                <Helmet>
+                    <title>Serene Soul | Login</title>
+                </Helmet>
+            </div>
             <div className='text-center'>
                 <SectionTitle title='Please Login!' subTitle='Login for more access.'></SectionTitle>
             </div>
@@ -104,7 +110,7 @@ const Login = () => {
                                             <span className="label-text">Password</span>
                                         </label>
                                         <input
-                                            name="password" required  type={showPassword ? 'text' : 'password'}  placeholder="password" className="input input-bordered border-black pr-10"
+                                            name="password" required type={showPassword ? 'text' : 'password'} placeholder="password" className="input input-bordered border-black pr-10"
                                         />
                                         <button type="button" className="absolute top-3/4 right-3 transform -translate-y-3/4 bg-transparent border-none outline-none cursor-pointer"
                                             onClick={() => setShowPassword(!showPassword)} >
