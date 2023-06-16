@@ -20,11 +20,11 @@ const Teachers = () => {
                 <SectionTitle title='Meet Our Teachers' subTitle='A good teacher can shine your health'></SectionTitle>
             </div>
             <div>
-                {
+                {/* {
                     teacherInfo.map(teacher => (
                         <h2></h2>
                     ))
-                }
+                } */}
             </div>
         </div>
     );

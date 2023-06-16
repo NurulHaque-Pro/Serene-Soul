@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import SectionTitle from '../../components/SectionTitle';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2'
 
 const Classes = () => {
 
     const [classes, setClasses] = useState([])
+    const { user } = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         fetch('http://localhost:5000/classes')
@@ -12,7 +17,46 @@ const Classes = () => {
             .then(data => setClasses(data.slice(0, 6)))
     }, [])
     const handleAddToCart = course => {
-        console.log(course);
+        // console.log(course);
+        if (user) {
+            const selectedClass = {classId : course._id, course_name: course.course_name, price: course.course_price, instructor: course.teacher};
+            fetch('http://localhost:5000/cart', {
+                method: 'POST',
+                headers: {
+                    'content-type' : 'application/json'
+                },
+                body: JSON.stringify(selectedClass)
+
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Class added to your selected class',
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                    }
+                })
+
+        }
+        else {
+            Swal.fire({
+                title: 'You are not logged in',
+                text: "You must be login to select class!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', {state: { from: location }})
+                }
+            })
+        }
     }
 
     return (
@@ -26,7 +70,7 @@ const Classes = () => {
                     {
                         classes.map(singleClass => (
 
-                            <div className="card bg-base-100 shadow-xl">
+                            <div key={singleClass._id} className="card bg-base-100 shadow-xl">
                                 <figure><img className='w-full h-56' src={singleClass.course_image} alt="Course" /></figure>
                                 <div className="card-body">
                                     <h2 className="card-title">
@@ -39,7 +83,7 @@ const Classes = () => {
                                         <div className="badge badge-outline">Available Seats: {singleClass.available_seats}</div>
                                     </div>
 
-                                    <button className='btn btn-primary' onClick={() => {handleAddToCart(singleClass)}}>Enroll Now</button>
+                                    <button className='btn btn-primary' onClick={() => { handleAddToCart(singleClass) }}>Select</button>
                                 </div>
                             </div>
                         ))
