@@ -24,7 +24,7 @@ const Navbar = () => {
         </li>
         {
             user && <li className=''>
-                <NavLink to='/' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Dashboard</NavLink>
+                <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Dashboard</NavLink>
             </li>
         }
 
