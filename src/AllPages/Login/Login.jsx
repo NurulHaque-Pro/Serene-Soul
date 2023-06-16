@@ -7,10 +7,11 @@ import Swal from 'sweetalert2'
 import SectionTitle from '../../components/SectionTitle';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
+import SocialLogin from './SocialLogin';
 
 const Login = () => {
 
-    const { signInWithEmail, signInWithGoogle } = useContext(AuthContext)
+    const { signInWithEmail } = useContext(AuthContext)
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -60,20 +61,6 @@ const Login = () => {
                 setError(errorMessage);
             });
 
-    }
-
-    const handleGoogleLogin = () => {
-        signInWithGoogle()
-            .then(result => {
-                Swal.fire(
-                    'Login Successfully',
-                    '',
-                    'success'
-                )
-            })
-            .catch(error => {
-                setError(error.message)
-            })
     }
 
     return (
@@ -129,12 +116,7 @@ const Login = () => {
                                             </p>
                                         </label>
                                     </div>
-                                    <div className='text-center pt-3'>
-                                        <p>Or Sign In With</p>
-                                        <div className='flex gap-3 justify-center'>
-                                            <button onClick={handleGoogleLogin}><img className='w-8 pt-3' src="https://cdn-icons-png.flaticon.com/512/2702/2702602.png" alt="" /></button>
-                                        </div>
-                                    </div>
+                                    <SocialLogin></SocialLogin>
                                 </form>
                             </div>
                         </div>

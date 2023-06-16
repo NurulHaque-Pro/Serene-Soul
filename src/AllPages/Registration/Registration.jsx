@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form"
 import loginImage from '../../assets/login.png'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 import SectionTitle from '../../components/SectionTitle';
 import { Helmet } from 'react-helmet-async';
+import SocialLogin from '../Login/SocialLogin';
 
 const Registration = () => {
 
@@ -66,21 +67,6 @@ const Registration = () => {
                         setError(error.message)
                     })
 
-            })
-            .catch(error => {
-                setError(error.message)
-            })
-    }
-
-
-    const handleGoogleLogin = () => {
-        signInWithGoogle()
-            .then(result => {
-                Swal.fire(
-                    'Login Successfully',
-                    '',
-                    'success'
-                )
             })
             .catch(error => {
                 setError(error.message)
@@ -171,12 +157,7 @@ const Registration = () => {
                                     </div>
 
                                 </form>
-                                <div className='text-center pb-7'>
-                                    <p>Or Sign In With</p>
-                                    <div className='flex gap-3 justify-center'>
-                                        <button onClick={handleGoogleLogin}><img className='w-8 pt-3' src="https://cdn-icons-png.flaticon.com/512/2702/2702602.png" alt="" /></button>
-                                    </div>
-                                </div>
+                                <SocialLogin></SocialLogin>
                             </div>
                         </div>
                     </div>
