@@ -4,7 +4,6 @@ import {
 import Main from "../Layout/Main";
 import Home from "../AllPages/Home/Home";
 import Instructors from "../AllPages/Instructors/Instructors";
-import Classes from "../AllPages/Classes/Classes";
 import Registration from "../AllPages/Registration/Registration";
 import Login from "../AllPages/Login/Login";
 import Page404 from "../AllPages/Page404/Page404";
@@ -15,6 +14,7 @@ import AllUsers from "../AllPages/DashBoard/AdminDashboard/AllUsers";
 import UserDashboard from "../AllPages/DashBoard/UsersDashboard/UserDashboard";
 import AdminDashboard from "../AllPages/DashBoard/AdminDashboard/AdminDashboard";
 import PrivetRoute from "./PrivetRoute";
+import AllClasses from "../AllPages/Classes/AllClasses";
 
   const router = createBrowserRouter([
     {
@@ -31,7 +31,7 @@ import PrivetRoute from "./PrivetRoute";
         },
         {
             path: '/classes',
-            element: <Classes></Classes>
+            element: <AllClasses></AllClasses>
         },
         {
             path: '/login',

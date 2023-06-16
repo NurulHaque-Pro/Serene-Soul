@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import SectionTitle from '../../components/SectionTitle';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import SectionTitle from '../../components/SectionTitle';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
 import useCart from '../../Hooks/useCart';
 
 const Classes = () => {
@@ -17,16 +17,16 @@ const Classes = () => {
     useEffect(() => {
         fetch('http://localhost:5000/classes')
             .then(res => res.json())
-            .then(data => setClasses(data.slice(0, 6)))
+            .then(data => setClasses(data))
     }, [])
     const handleAddToCart = course => {
         console.log(course);
         if (user) {
-            const selectedClass = {classId : course._id, email: user.email, course_name: course.course_name, price: course.course_price, image: course.course_image, duration: course.course_duration, instructor: course.teacher};
+            const selectedClass = { classId: course._id, email: user.email, course_name: course.course_name, price: course.course_price, image: course.course_image, duration: course.course_duration, instructor: course.teacher };
             fetch('http://localhost:5000/carts', {
                 method: 'POST',
                 headers: {
-                    'content-type' : 'application/json'
+                    'content-type': 'application/json'
                 },
                 body: JSON.stringify(selectedClass)
 
@@ -57,20 +57,20 @@ const Classes = () => {
                 confirmButtonText: 'Login'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate('/login', {state: { from: location }})
+                    navigate('/login', { state: { from: location } })
                 }
             })
         }
     }
 
     return (
-        <div className='pt-10 pb-16 bg-[#77BEAE] bg-opacity-5'>
+        <div className='pb-20 pt-32  bg-[#77BEAE] bg-opacity-5'>
             <div className='container mx-auto '>
                 <div className='text-center pb-5'>
 
                     <SectionTitle title='Popular Classes' subTitle='Visit our most popular classes'></SectionTitle>
                 </div>
-                <div className='px-4 grid md:grid-cols-3 gap-10'>
+                <div className='grid grid-cols-3 gap-10'>
                     {
                         classes.map(singleClass => (
 

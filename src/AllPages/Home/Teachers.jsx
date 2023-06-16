@@ -16,7 +16,7 @@ const Teachers = () => {
 
     return (
         <div className='container mx-auto py-14'>
-            <div>
+            <div className='text-center'>
                 <SectionTitle title='Meet Our Teachers' subTitle='A good teacher can shine your health'></SectionTitle>
             </div>
             <div>

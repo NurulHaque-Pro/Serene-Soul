@@ -58,22 +58,22 @@ const Navbar = () => {
                         {navMenuItems}
                     </ul>
                 </div>
-                <div className="navbar-end gap-5">
+                <div className="navbar-end gap-2">
 
-                    <NavLink to='/dashboard/myclasses' className='text-primary btn'>
-                        <FaCartPlus className='text-lg'></FaCartPlus>
-                        <div className="badge badge-secondary">+{cart.length}</div></NavLink>
+                    <NavLink to='/dashboard/myclasses' className='text-primary flex gap-1'>
+                        <FaCartPlus className='text-xl'></FaCartPlus>
+                        <div className="badge p-1 rounded-full badge-secondary">+{cart.length}</div></NavLink>
 
                     {
                         user ?
                             <>
                                 <div>
-                                    <img className='w-10 cursor-pointer rounded-full' src={user?.photoURL} alt="" />
+                                    <img className='w-9 md:w-10 cursor-pointer rounded-full' src={user?.photoURL} alt="" />
                                 </div>
-                                <Link className=" font-medium text-[white] px-8 py-3 bg-primary border border-primary hover:bg-[#ff6a3d00] hover:text-primary rounded"><button onClick={handleSignOut}>Logout</button></Link></>
+                                <Link className=" font-medium text-[white] md:px-8 px-2 py-1 md:py-3 bg-primary border border-primary hover:bg-[#ff6a3d00] hover:text-primary rounded"><button onClick={handleSignOut}>Logout</button></Link></>
                             :
                             <>
-                                <Link to='/login' className=" font-medium text-[white] px-8 py-3 bg-primary border border-primary hover:bg-[#ff6a3d00] hover:text-primary rounded">Login</Link>
+                                <Link to='/login' className="font-medium text-[white] md:px-8 px-2 py-1 md:py-3 bg-primary border border-primary hover:bg-[#ff6a3d00] hover:text-primary rounded">Login</Link>
                             </>
                     }
 

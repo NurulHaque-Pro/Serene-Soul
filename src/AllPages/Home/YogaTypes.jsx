@@ -16,9 +16,9 @@ const YogaTypes = () => {
                 </div>
 
 
-                <div className='grid grid-cols-5 gap-5 items-center'>
+                <div className='grid md:grid-cols-5 gap-5 items-center'>
                     {/* 8 Yoga List */}
-                    <div className='col-span-3 grid grid-cols-2 gap-5'>
+                    <div className='col-span-3 grid md:grid-cols-2 gap-5'>
                         <div className='flex items-center gap-4'>
 
                             <GiMeditation className='text-7xl bg-primary text-white p-3 rounded-full'></GiMeditation>
