@@ -3,11 +3,14 @@ import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/Serene-soul-main-logo.png'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { FaCartPlus } from 'react-icons/fa';
+import useCart from '../../Hooks/useCart';
 
 const Navbar = () => {
 
 
     const { user, logOut } = useContext(AuthContext)
+
+    const [cart] = useCart();
 
     const handleSignOut = () => {
         logOut();
@@ -59,7 +62,7 @@ const Navbar = () => {
 
                     <NavLink to='/dashboard/myclasses' className='text-primary btn'>
                         <FaCartPlus className='text-lg'></FaCartPlus>
-                        <div className="badge badge-secondary">+0</div></NavLink>
+                        <div className="badge badge-secondary">+{cart.length}</div></NavLink>
 
                     {
                         user ?

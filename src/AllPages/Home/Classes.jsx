@@ -2,12 +2,15 @@ import React, { useContext, useEffect, useState } from 'react';
 import SectionTitle from '../../components/SectionTitle';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import useCart from '../../Hooks/useCart';
 
 const Classes = () => {
 
     const [classes, setClasses] = useState([])
     const { user } = useContext(AuthContext)
+
+    const [, refetch] = useCart();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -17,10 +20,10 @@ const Classes = () => {
             .then(data => setClasses(data.slice(0, 6)))
     }, [])
     const handleAddToCart = course => {
-        // console.log(course);
+        console.log(course);
         if (user) {
-            const selectedClass = {classId : course._id, course_name: course.course_name, price: course.course_price, instructor: course.teacher};
-            fetch('http://localhost:5000/cart', {
+            const selectedClass = {classId : course._id, email: user.email, course_name: course.course_name, price: course.course_price, image: course.course_image, duration: course.course_duration, instructor: course.teacher};
+            fetch('http://localhost:5000/carts', {
                 method: 'POST',
                 headers: {
                     'content-type' : 'application/json'
@@ -31,6 +34,7 @@ const Classes = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.insertedId) {
+                        refetch();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',

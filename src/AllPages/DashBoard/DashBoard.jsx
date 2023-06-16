@@ -27,7 +27,7 @@ const DashBoard = () => {
                             <NavLink to='userdashboard' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}><AiFillDashboard></AiFillDashboard> User Dashboard</NavLink>
                         </li>
                         <li className=''>
-                            <NavLink to='myclasses' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}><FaChalkboardTeacher></FaChalkboardTeacher> My Classes</NavLink>
+                            <NavLink to='myclasses' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}><FaChalkboardTeacher></FaChalkboardTeacher> Selected Classes</NavLink>
                         </li>
                         <li className=''>
                             <NavLink to='admindashboard' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}><AiFillDashboard></AiFillDashboard>Admin Dashboard</NavLink>
