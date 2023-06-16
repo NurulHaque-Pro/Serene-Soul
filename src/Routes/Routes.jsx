@@ -12,6 +12,8 @@ import DashBoard from "../AllPages/DashBoard/DashBoard";
 import MyClasses from "../AllPages/DashBoard/UsersDashboard/MyClasses";
 import AllCourses from "../AllPages/DashBoard/AdminDashboard/AllCourses";
 import AllUsers from "../AllPages/DashBoard/AdminDashboard/AllUsers";
+import UserDashboard from "../AllPages/DashBoard/UsersDashboard/UserDashboard";
+import AdminDashboard from "../AllPages/DashBoard/AdminDashboard/AdminDashboard";
 
   const router = createBrowserRouter([
     {
@@ -45,12 +47,24 @@ import AllUsers from "../AllPages/DashBoard/AdminDashboard/AllUsers";
       element: <DashBoard></DashBoard>,
       children: [
         {
+          path: 'userdashboard',
+          element: <UserDashboard></UserDashboard>
+        },
+        {
           path: 'myclasses', 
           element: <MyClasses></MyClasses>
         },
         {
+          path: 'admindashboard',
+          element: <AdminDashboard></AdminDashboard>
+        },
+        {
           path: 'allusers', 
           element: <AllUsers></AllUsers>
+        },
+        {
+          path: 'allclasses', 
+          element: <AllCourses></AllCourses>
         }
       ]
     },

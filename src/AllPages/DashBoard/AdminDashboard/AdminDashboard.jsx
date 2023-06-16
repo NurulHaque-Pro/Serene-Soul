@@ -1,15 +1,15 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-const AllUsers = () => {
+const AdminDashboard = () => {
     return (
         <div>
             <Helmet>
-                <title>Serene Soul | All Users</title>
+                <title>Serene Soul | Admin Dashboard</title>
             </Helmet>
-            <h2>All Users</h2>
+            <h2>Admin Dashboard</h2>
         </div>
     );
 };
 
-export default AllUsers;
+export default AdminDashboard;

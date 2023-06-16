@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/Serene-soul-main-logo.png'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { FaCartPlus } from 'react-icons/fa';
 
 const Navbar = () => {
 
@@ -22,6 +23,7 @@ const Navbar = () => {
         <li className=''>
             <NavLink to='/classes' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Classes</NavLink>
         </li>
+
         {
             user && <li className=''>
                 <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Dashboard</NavLink>
@@ -54,6 +56,10 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end gap-5">
+
+                    <NavLink to='/dashboard/myclasses' className='text-primary btn'>
+                        <FaCartPlus className='text-lg'></FaCartPlus>
+                        <div className="badge badge-secondary">+0</div></NavLink>
 
                     {
                         user ?

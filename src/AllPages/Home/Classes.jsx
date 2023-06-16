@@ -11,6 +11,9 @@ const Classes = () => {
             .then(res => res.json())
             .then(data => setClasses(data.slice(0, 6)))
     }, [])
+    const handleAddToCart = course => {
+        console.log(course);
+    }
 
     return (
         <div className='pt-10 pb-16 bg-[#77BEAE] bg-opacity-5'>
@@ -30,12 +33,13 @@ const Classes = () => {
                                         {singleClass.course_name}
                                     </h2>
                                     <p>{singleClass.course_short_description}</p>
-                                    <div className="card-actions justify-between py-2">
+                                    <div className="card-actions py-2">
                                         <div className="badge badge-primary">Total Classes: {singleClass.total_classes}</div>
                                         <div className="badge badge-outline">Duration: {singleClass.course_duration} Weeks</div>
+                                        <div className="badge badge-outline">Available Seats: {singleClass.available_seats}</div>
                                     </div>
 
-                                    <Link to='/' className='btn btn-primary '>Enroll Now</Link>
+                                    <button className='btn btn-primary' onClick={() => {handleAddToCart(singleClass)}}>Enroll Now</button>
                                 </div>
                             </div>
                         ))
