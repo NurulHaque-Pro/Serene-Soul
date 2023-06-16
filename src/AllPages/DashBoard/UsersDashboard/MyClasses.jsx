@@ -8,6 +8,7 @@ const MyClasses = () => {
 
     const [cart, refetch] = useCart();
 
+    const total = cart.reduce((sum, item) => item.price + sum, 0)
     console.log(cart);
 
     const handleMyClassDelete = (id) => {
@@ -41,7 +42,7 @@ const MyClasses = () => {
     }
 
     return (
-        <div>
+        <div className='w-full px-10'>
             <Helmet>
                 <title>Serene Soul | My Classes</title>
             </Helmet>
@@ -49,8 +50,9 @@ const MyClasses = () => {
                 <SectionTitle title='My Selected Classes' subTitle='Please complete payment for enroll classes'></SectionTitle>
             </div>
 
-            <div className='flex justify-between items-center py-5'>
+            <div className='flex justify-between items-center p-5'>
                 <h3>Total Classes: {cart.length}</h3>
+                <h3>Total Price: {total}</h3>
                 <button className="btn btn-outline btn-accent">Pay All</button>
 
             </div>

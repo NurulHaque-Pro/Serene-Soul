@@ -14,6 +14,7 @@ import AllCourses from "../AllPages/DashBoard/AdminDashboard/AllCourses";
 import AllUsers from "../AllPages/DashBoard/AdminDashboard/AllUsers";
 import UserDashboard from "../AllPages/DashBoard/UsersDashboard/UserDashboard";
 import AdminDashboard from "../AllPages/DashBoard/AdminDashboard/AdminDashboard";
+import PrivetRoute from "./PrivetRoute";
 
   const router = createBrowserRouter([
     {
@@ -44,7 +45,7 @@ import AdminDashboard from "../AllPages/DashBoard/AdminDashboard/AdminDashboard"
     },
     {
       path: 'dashboard',
-      element: <DashBoard></DashBoard>,
+      element: <PrivetRoute><DashBoard></DashBoard></PrivetRoute>,
       children: [
         {
           path: 'userdashboard',

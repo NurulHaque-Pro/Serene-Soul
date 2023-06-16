@@ -36,7 +36,7 @@ const HeaderSlider = () => {
                 className="mySwiper"
             >
                 <SwiperSlide style={{
-                    backgroundImage: `url(${slider5})`,
+                    backgroundImage: `url(${slider4})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
                 }}>
@@ -51,7 +51,7 @@ const HeaderSlider = () => {
                     </div>
                 </SwiperSlide>
                 <SwiperSlide style={{
-                    backgroundImage: `url(${slider4})`,
+                    backgroundImage: `url(${slider5})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundSize: 'cover'
                 }}>
