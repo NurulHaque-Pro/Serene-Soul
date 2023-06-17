@@ -79,7 +79,6 @@ const Classes = () => {
                 <div className='px-4 grid md:grid-cols-3 gap-10'>
                     {
                         classes.map(singleClass => (
-
                             <div key={singleClass._id} className="card bg-base-100 shadow-xl">
                                 <figure><img className='w-full h-56' src={singleClass.course_image} alt="Course" /></figure>
                                 <div className="card-body">
