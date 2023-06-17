@@ -8,7 +8,7 @@ import useCart from '../../Hooks/useCart';
 const Classes = () => {
 
     const [classes, setClasses] = useState([])
-    const { user } = useContext(AuthContext)
+    const { user, loading } = useContext(AuthContext)
 
     const [, refetch] = useCart();
     const navigate = useNavigate();

@@ -4,12 +4,15 @@ import { useQuery } from '@tanstack/react-query'
 import SectionTitle from '../../../components/SectionTitle';
 import { FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2'
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const AllUsers = () => {
 
+    const [axiosSecure] = useAxiosSecure();
+
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const response = await fetch('http://localhost:5000/users')
-        return response.json();
+        const response = await axiosSecure.get('/users')
+        return response.data;
     })
 
     const handleUserDelete = (id) => {
@@ -33,17 +36,17 @@ const AllUsers = () => {
                             refetch();
                             Swal.fire(
                                 'Deleted!',
-                                'Your class has been deleted.',
+                                'User has been deleted.',
                                 'success'
                             )
                         }
                     })
 
-                Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
+                // Swal.fire(
+                //     'Deleted!',
+                //     'Your file has been deleted.',
+                //     'success'
+                // )
             }
         })
     }
