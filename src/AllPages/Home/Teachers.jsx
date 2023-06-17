@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../components/SectionTitle';
+import Instructors from '../Instructors/Instructors';
 
 
 const Teachers = () => {
@@ -15,16 +16,9 @@ const Teachers = () => {
     const teacherInfo = classes.map(course => course.teacher);
 
     return (
-        <div className='container mx-auto py-14'>
-            <div className='text-center'>
-                <SectionTitle title='Meet Our Teachers' subTitle='A good teacher can shine your health'></SectionTitle>
-            </div>
+        <div className='container mx-auto px-5'>
             <div>
-                {/* {
-                    teacherInfo.map(teacher => (
-                        <h2></h2>
-                    ))
-                } */}
+                <Instructors></Instructors>
             </div>
         </div>
     );

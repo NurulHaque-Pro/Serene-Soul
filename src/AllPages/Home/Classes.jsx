@@ -4,8 +4,14 @@ import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
 import useCart from '../../Hooks/useCart';
+import useAdmin from '../../Hooks/useAdmin';
+import useTeacher from '../../Hooks/useTeacher';
 
 const Classes = () => {
+
+    const [isAdmin] = useAdmin();
+    const [isTeacher] = useTeacher();
+    // console.log(isAdmin, isTeacher);
 
     const [classes, setClasses] = useState([])
     const { user } = useContext(AuthContext)
@@ -22,11 +28,11 @@ const Classes = () => {
     const handleAddToCart = course => {
         console.log(course);
         if (user) {
-            const selectedClass = {classId : course._id, email: user.email, course_name: course.course_name, price: course.course_price, image: course.course_image, duration: course.course_duration, instructor: course.teacher};
+            const selectedClass = { classId: course._id, email: user.email, course_name: course.course_name, price: course.course_price, image: course.course_image, duration: course.course_duration, instructor: course.teacher };
             fetch('http://localhost:5000/carts', {
                 method: 'POST',
                 headers: {
-                    'content-type' : 'application/json'
+                    'content-type': 'application/json'
                 },
                 body: JSON.stringify(selectedClass)
 
@@ -57,7 +63,7 @@ const Classes = () => {
                 confirmButtonText: 'Login'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate('/login', {state: { from: location }})
+                    navigate('/login', { state: { from: location } })
                 }
             })
         }
@@ -87,7 +93,13 @@ const Classes = () => {
                                         <div className="badge badge-outline">Available Seats: {singleClass.available_seats}</div>
                                     </div>
 
-                                    <button className='btn btn-primary' onClick={() => { handleAddToCart(singleClass) }}>Select</button>
+                                    <button
+                                        className={`btn btn-primary ${isAdmin || isTeacher ? 'disabled' : ''}`}
+                                        onClick={() => { handleAddToCart(singleClass) }}
+                                        disabled={isAdmin || isTeacher}
+                                    >
+                                        Select
+                                    </button>
                                 </div>
                             </div>
                         ))

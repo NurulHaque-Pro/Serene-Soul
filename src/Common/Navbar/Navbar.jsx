@@ -4,6 +4,8 @@ import logo from '../../assets/Serene-soul-main-logo.png'
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { FaCartPlus } from 'react-icons/fa';
 import useCart from '../../Hooks/useCart';
+import useAdmin from '../../Hooks/useAdmin';
+import useTeacher from '../../Hooks/useTeacher';
 
 const Navbar = () => {
 
@@ -11,6 +13,10 @@ const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
 
     const [cart] = useCart();
+
+    const [isAdmin] = useAdmin();
+    const [isTeacher] = useTeacher();
+
 
     const handleSignOut = () => {
         logOut();
@@ -27,11 +33,68 @@ const Navbar = () => {
             <NavLink to='/classes' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Classes</NavLink>
         </li>
 
+        {/* {
+            isAdmin && (
+                <NavLink to='/admindashboard' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Dashboard</NavLink>
+            )
+        }
         {
+            isTeacher && (
+                <NavLink to='/teacherdashboard' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Dashboard</NavLink>
+            )
+        }
+        {
+            isAdmin && isTeacher && (
+                <NavLink to='/userdashboard' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Dashboard</NavLink>
+            )
+        } */}
+
+        {/* --------------------------------------- */}
+
+        {
+            user ? (
+                <>
+                    {isAdmin && (
+                        <li className=''>
+                            <NavLink
+                                to='/dashboard/admindashboard'
+                                className={({ isActive }) => (isActive ? 'text-primary' : 'text-[#3b3b3b]')}
+                            >
+                                Dashboard
+                            </NavLink>
+                        </li>
+                    )}
+                    {isTeacher && (
+                        <li className=''>
+                            <NavLink
+                                to='/dashboard/teacherdashboard'
+                                className={({ isActive }) => (isActive ? 'text-primary' : 'text-[#3b3b3b]')}
+                            >
+                                Dashboard
+                            </NavLink>
+                        </li>
+                    )}
+                    {!isAdmin && !isTeacher && (
+                        <li className=''>
+                            <NavLink
+                                to='/dashboard/userdashboard'
+                                className={({ isActive }) => (isActive ? 'text-primary' : 'text-[#3b3b3b]')}
+                            >
+                                Dashboard
+                            </NavLink>
+                        </li>
+                    )}
+                </>
+            ) : null
+        }
+
+        {/* --------------------------------------- */}
+
+        {/* {
             user && <li className=''>
                 <NavLink to='/dashboard' className={({ isActive }) => isActive ? 'text-primary' : 'text-[#3b3b3b]'}>Dashboard</NavLink>
             </li>
-        }
+        } */}
 
     </>
 

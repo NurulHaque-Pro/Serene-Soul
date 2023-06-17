@@ -3,14 +3,14 @@ import { Helmet } from 'react-helmet-async';
 import SectionTitle from '../../../components/SectionTitle';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 
-const UserDashboard = () => {
-    
-    const {user} = useContext(AuthContext)
+const TeachersDashboard = () => {
+
+    const { user } = useContext(AuthContext)
 
     return (
         <div>
             <Helmet>
-                <title>Serene Soul | User Dashboard</title>
+                <title>Serene Soul | Teacher</title>
             </Helmet>
             <div className='text-center'>
                 <SectionTitle title={`${user.displayName}`} subTitle='Welcome'></SectionTitle>
@@ -19,4 +19,4 @@ const UserDashboard = () => {
     );
 };
 
-export default UserDashboard;
+export default TeachersDashboard;
