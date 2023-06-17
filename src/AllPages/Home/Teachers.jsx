@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SectionTitle from '../../components/SectionTitle';
 import Instructors from '../Instructors/Instructors';
+import { Fade } from 'react-awesome-reveal';
 
 
 const Teachers = () => {
@@ -18,7 +19,9 @@ const Teachers = () => {
     return (
         <div className='container mx-auto px-5'>
             <div>
-                <Instructors></Instructors>
+                <Fade>
+                    <Instructors></Instructors>
+                </Fade>
             </div>
         </div>
     );

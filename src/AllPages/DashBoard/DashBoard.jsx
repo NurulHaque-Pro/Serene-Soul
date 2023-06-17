@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import { FaBeer, FaChalkboardTeacher, FaHome, FaPenSquare, FaPlus, FaUserGraduate, FaUsers } from 'react-icons/fa';
+import { FaBeer, FaChalkboardTeacher, FaFile, FaHome, FaPenSquare, FaPlus, FaUserGraduate, FaUsers } from 'react-icons/fa';
 import { AiFillDashboard } from "react-icons/ai";
 import { Helmet } from 'react-helmet-async';
 import logo from '../../assets/Serene-soul-main-logo.png'
@@ -99,6 +99,18 @@ const DashBoard = () => {
                                     >
                                         <AiFillDashboard />
                                         Teacher Dashboard
+                                    </NavLink>
+                                </li>
+
+                                <li className='text-base'>
+                                    <NavLink
+                                        to='teachersclasses'
+                                        className={({ isActive }) =>
+                                            isActive ? 'text-primary' : 'text-[#3b3b3b]'
+                                        }
+                                    >
+                                        <FaFile />
+                                        Uploaded Classes
                                     </NavLink>
                                 </li>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import SectionTitle from '../../components/SectionTitle';
 import { GiMeditation } from "react-icons/gi";
 import yogaImage from '../../assets/yogaTypes.jpg'
+import { Fade } from 'react-awesome-reveal';
 
 const YogaTypes = () => {
     return (
@@ -10,7 +11,10 @@ const YogaTypes = () => {
 
                 <div className=''>
                     <div className='mb-9'>
-                        <SectionTitle title='Diverse Yoga and Meditation Practices' subTitle=' Exploring Serene Paths to Harmony'></SectionTitle>
+                        <Fade>
+                            <SectionTitle title='Diverse Yoga and Meditation Practices' subTitle=' Exploring Serene Paths to Harmony'></SectionTitle>
+                        </Fade>
+
                     </div>
 
                 </div>

@@ -4,8 +4,12 @@ import Swal from 'sweetalert2';
 import SectionTitle from '../../components/SectionTitle';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import useCart from '../../Hooks/useCart';
+import useAdmin from '../../Hooks/useAdmin';
+import useTeacher from '../../Hooks/useTeacher';
 
 const Classes = () => {
+    const [isAdmin] = useAdmin();
+    const [isTeacher] = useTeacher();
 
     const [classes, setClasses] = useState([])
     const { user, loading } = useContext(AuthContext)
@@ -87,7 +91,13 @@ const Classes = () => {
                                         <div className="badge badge-outline">Available Seats: {singleClass.available_seats}</div>
                                     </div>
 
-                                    <button className='btn btn-primary' onClick={() => { handleAddToCart(singleClass) }}>Select</button>
+                                    <button
+                                        className={`btn btn-primary ${isAdmin || isTeacher ? 'disabled' : ''}`}
+                                        onClick={() => { handleAddToCart(singleClass) }}
+                                        disabled={isAdmin || isTeacher}
+                                    >
+                                        Select
+                                    </button>
                                 </div>
                             </div>
                         ))
