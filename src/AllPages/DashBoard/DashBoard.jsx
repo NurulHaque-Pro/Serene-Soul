@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet-async';
 import logo from '../../assets/Serene-soul-main-logo.png'
 import useCart from '../../Hooks/useCart';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import useAdmin from '../../Hooks/useAdmin';
 
 const DashBoard = () => {
 
@@ -14,7 +15,10 @@ const DashBoard = () => {
     const [cart] = useCart()
 
     // ToDo : Need to setup dynamic admin
-    const isAdmin = true;
+    // const isAdmin = true;
+
+    const [isAdmin] = useAdmin();
+    console.log(isAdmin);
 
     return (
         <div className='container mx-auto'>
