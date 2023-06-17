@@ -27,7 +27,7 @@ const AllUsers = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/users/${id}`, {
+                fetch(`https://serene-soul-server-nurulhaque-pro.vercel.app/users/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -41,12 +41,6 @@ const AllUsers = () => {
                             )
                         }
                     })
-
-                // Swal.fire(
-                //     'Deleted!',
-                //     'Your file has been deleted.',
-                //     'success'
-                // )
             }
         })
     }
@@ -55,7 +49,7 @@ const AllUsers = () => {
 
     const handleAdminRole = user => {
         // console.log(user);
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        fetch(`https://serene-soul-server-nurulhaque-pro.vercel.app/users/admin/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -77,7 +71,7 @@ const AllUsers = () => {
     // Handle Teacher Role
 
     const handleTeacherRole = user => {
-        fetch(`http://localhost:5000/users/teacher/${user._id}`, {
+        fetch(`https://serene-soul-server-nurulhaque-pro.vercel.app/users/teacher/${user._id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())

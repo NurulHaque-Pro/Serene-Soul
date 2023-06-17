@@ -41,7 +41,7 @@ const Registration = () => {
                 updateUserProfile(data.name, data.photo)
                     .then(() => {
                         const savedUser = {name: data.name, email: data.email}
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://serene-soul-server-nurulhaque-pro.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type' : 'application/json'

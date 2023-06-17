@@ -131,7 +131,7 @@ const Navbar = () => {
                         user ?
                             <>
                                 <div>
-                                    <img className='w-9 md:w-10 cursor-pointer rounded-full' src={user?.photoURL} alt="" />
+                                    <img className='w-9 h-9 md:w-10 md:h-10 cursor-pointer rounded-full' src={user?.photoURL} alt="" />
                                 </div>
                                 <Link className=" font-medium text-[white] md:px-8 px-2 py-1 md:py-3 bg-primary border border-primary hover:bg-[#ff6a3d00] hover:text-primary rounded"><button onClick={handleSignOut}>Logout</button></Link></>
                             :

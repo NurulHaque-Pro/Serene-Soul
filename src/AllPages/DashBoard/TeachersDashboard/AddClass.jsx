@@ -24,7 +24,7 @@ const AddClass = () => {
         // console.log(data);
         data.teachersPhoto = user?.photoURL;
         // const savedClasses = { name: data.name, email: data.email }
-        fetch('http://localhost:5000/classes', {
+        fetch('https://serene-soul-server-nurulhaque-pro.vercel.app/classes', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

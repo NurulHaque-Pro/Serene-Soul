@@ -7,7 +7,7 @@ const Instructors = () => {
     const [uniqueUser, setUniqueUser] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/classes')
+        fetch('https://serene-soul-server-nurulhaque-pro.vercel.app/classes')
             .then(res => res.json())
             .then(data => {
                 const uniqueEmails = [...new Set(data.map(singleClass => singleClass.email))];

@@ -19,7 +19,7 @@ const Classes = () => {
     const location = useLocation();
 
     useEffect(() => {
-        fetch('http://localhost:5000/classes')
+        fetch('https://serene-soul-server-nurulhaque-pro.vercel.app/classes')
             .then(res => res.json())
             .then(data => setClasses(data))
     }, [])
@@ -27,7 +27,7 @@ const Classes = () => {
         console.log(course);
         if (user) {
             const selectedClass = { classId: course._id, email: user.email, course_name: course.course_name, price: course.course_price, image: course.course_image, duration: course.course_duration, instructor: course.teacher };
-            fetch('http://localhost:5000/carts', {
+            fetch('https://serene-soul-server-nurulhaque-pro.vercel.app/carts', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -84,6 +84,7 @@ const Classes = () => {
                                     <h2 className="card-title">
                                         {singleClass.course_name}
                                     </h2>
+                                    <p className='font-medium'>Teacher: <span className='text-primary'>{singleClass.name}</span></p>
                                     <p>{singleClass.course_short_description}</p>
                                     <div className="card-actions py-2">
                                         <div className="badge badge-primary">Total Classes: {singleClass.total_classes}</div>

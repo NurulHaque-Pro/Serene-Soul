@@ -13,6 +13,7 @@ import slider4 from '../../assets/slider-bg4.jpg'
 import slider5 from '../../assets/slider-bg5.jpg'
 
 import { Autoplay, Pagination, Navigation } from "swiper";
+import { Link } from 'react-router-dom';
 
 const HeaderSlider = () => {
     return (
@@ -45,7 +46,7 @@ const HeaderSlider = () => {
                         <div className='max-w-3xl mx-auto text-center text-white flex flex-col justify-center pt-16 px-5 h-[650px] md:h-[620px] space-y-5'>
                             <h2 className='text-4xl md:text-5xl'>"Discover Inner Peace"</h2>
                             <p>Immerse yourself in the serene world of yoga and meditation. Experience tranquility and find balance as you embark on a journey towards inner peace with our expert instructors.</p>
-                            <button className='btn btn-primary w-[150px] mx-auto hover:bg-transparent hover:text-primary border border-primary '>View Classes</button>
+                            <Link to='/classes' className='btn btn-primary w-[150px] mx-auto hover:bg-transparent hover:text-primary border border-primary '>View Classes</Link>
 
                         </div>
                     </div>
@@ -60,7 +61,7 @@ const HeaderSlider = () => {
                         <div className='max-w-3xl mx-auto text-center text-white flex flex-col justify-center pt-16 px-5 h-[650px] md:h-[620px] space-y-5'>
                             <h2 className='text-4xl md:text-5xl'>"Nurture Your Well-being"</h2>
                             <p>Embrace self-care and prioritize your well-being with our yoga and meditation classes. Cultivate mindfulness, reduce stress, and enhance your overall health while basking in the serenity of our peaceful sanctuary.</p>
-                            <button className='btn btn-primary w-[150px] mx-auto hover:bg-transparent hover:text-primary border border-primary '>View Classes</button>
+                            <Link to='/classes' className='btn btn-primary w-[150px] mx-auto hover:bg-transparent hover:text-primary border border-primary '>View Classes</Link>
 
                         </div>
                     </div>
@@ -75,7 +76,7 @@ const HeaderSlider = () => {
                         <div className='max-w-3xl mx-auto text-center text-white flex flex-col justify-center pt-16 px-5 h-[650px] md:h-[620px] space-y-5'>
                             <h2 className='text-4xl md:text-5xl'>"Awaken Your Mind and Body"</h2>
                             <p>Ignite your spirit and rejuvenate your soul through the transformative power of yoga and meditation. Unleash your inner potential and achieve harmony of mind, body, and spirit with our carefully crafted classes.</p>
-                            <button className='btn btn-primary w-[150px] mx-auto hover:bg-transparent hover:text-primary border border-primary '>View Classes</button>
+                            <Link to='/classes' className='btn btn-primary w-[150px] mx-auto hover:bg-transparent hover:text-primary border border-primary '>View Classes</Link>
 
                         </div>
                     </div>

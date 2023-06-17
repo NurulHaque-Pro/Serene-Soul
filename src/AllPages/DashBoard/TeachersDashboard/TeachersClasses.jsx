@@ -13,7 +13,7 @@ const TeachersClasses = () => {
     console.log(user.email);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/classes?email=${user.email}`)
+        fetch(`https://serene-soul-server-nurulhaque-pro.vercel.app/classes?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => {
                 setClasses(data);
@@ -35,7 +35,7 @@ const TeachersClasses = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/classes/${id}`, {
+                fetch(`https://serene-soul-server-nurulhaque-pro.vercel.app/classes/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -73,6 +73,7 @@ const TeachersClasses = () => {
                                 <th>#</th>
                                 <th>Image</th>
                                 <th>Class</th>
+                                <th>Available seats</th>
                                 <th>Price</th>
                                 <th>Action</th>
                             </tr>
@@ -91,6 +92,7 @@ const TeachersClasses = () => {
                                             </div>
                                         </td>
                                         <td>{course.course_name}</td>
+                                        <td>{course.available_seats}</td>
                                         <td>${course.course_price}</td>
                                         <td>
                                             <button onClick={() => { handleClassDelete(course._id) }} className="btn btn-square btn-outline">

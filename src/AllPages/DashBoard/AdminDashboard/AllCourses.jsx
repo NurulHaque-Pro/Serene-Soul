@@ -27,7 +27,7 @@ const AllCourses = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/classes/${id}`, {
+                fetch(`https://serene-soul-server-nurulhaque-pro.vercel.app/classes/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -64,6 +64,7 @@ const AllCourses = () => {
                                 <th>Image</th>
                                 <th>Class</th>
                                 <th>Teachers</th>
+                                <th>Available seats</th>
                                 <th>Price</th>
                                 <th>Action</th>
                             </tr>
@@ -83,6 +84,7 @@ const AllCourses = () => {
                                         </td>
                                         <td>{course.course_name}</td>
                                         <td>{course.name}</td>
+                                        <td>{course.available_seats}</td>
                                         <td>${course.course_price}</td>
                                         <td>
                                             <button onClick={() => { handleClassDelete(course._id) }} className="btn btn-square btn-outline">

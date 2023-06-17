@@ -9,7 +9,7 @@ const Teachers = () => {
     const [classes, setClasses] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/classes')
+        fetch('https://serene-soul-server-nurulhaque-pro.vercel.app/classes')
             .then(res => res.json())
             .then(data => setClasses(data.slice(0, 4)))
     }, [])
