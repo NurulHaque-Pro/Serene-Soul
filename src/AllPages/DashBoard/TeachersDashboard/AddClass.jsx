@@ -10,7 +10,7 @@ const AddClass = () => {
 
     const { user } = useContext(AuthContext)
 
-    // console.log(user);
+    console.log(user);
 
     const {
         register,
@@ -22,7 +22,7 @@ const AddClass = () => {
 
     const onSubmit = (data) => {
         // console.log(data);
-
+        data.teachersPhoto = user?.photoURL;
         // const savedClasses = { name: data.name, email: data.email }
         fetch('http://localhost:5000/classes', {
             method: 'POST',

@@ -8,7 +8,7 @@ const MyClasses = () => {
 
     const [cart, refetch] = useCart();
 
-    const total = cart.reduce((sum, item) => item.price + sum, 0)
+    const total = cart.reduce((sum, item) => parseFloat(item.price) + sum, 0)
     console.log(cart);
 
     const handleMyClassDelete = (id) => {

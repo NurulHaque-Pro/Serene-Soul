@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useQuery } from '@tanstack/react-query'
 import SectionTitle from '../../../components/SectionTitle';
-import { FaUserShield } from 'react-icons/fa';
+import { FaChalkboardTeacher, FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2'
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
@@ -53,7 +53,7 @@ const AllUsers = () => {
 
 
 
-    const handleUserRole = user => {
+    const handleAdminRole = user => {
         // console.log(user);
         fetch(`http://localhost:5000/users/admin/${user._id}`, {
             method: 'PATCH'
@@ -73,6 +73,28 @@ const AllUsers = () => {
                 }
             })
     }
+
+    // Handle Teacher Role
+
+    const handleTeacherRole = user => {
+        fetch(`http://localhost:5000/users/teacher/${user._id}`, {
+            method: 'PATCH'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        icon: 'success',
+                        title: `${user.name} is now a Teacher`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
+    };
+
+
 
     return (
         <div className='w-full px-10'>
@@ -104,9 +126,22 @@ const AllUsers = () => {
                                         <th>{index + 1}</th>
                                         <td>{user.name}</td>
                                         <td>{user.email}</td>
-                                        <td>{user.role === 'admin' ? 'admin' :
-                                            <button onClick={() => handleUserRole(user)} className="btn btn-ghost bg-primary  text-white"><FaUserShield></FaUserShield></button>
-                                        }</td>
+                                        <td className='flex gap-1'>
+                                            {user.role === 'admin' ? (
+                                                'Admin'
+                                            ) : user.role === 'teacher' ? (
+                                                'Teacher'
+                                            ) : (
+                                                <>
+                                                    <button title='Make Admin' onClick={() => handleAdminRole(user)} className="btn btn-ghost bg-primary  text-white">
+                                                        <FaUserShield></FaUserShield>
+                                                    </button>
+                                                    <button title='Make Teacher' onClick={() => handleTeacherRole(user)} className="btn btn-ghost bg-primary  text-white">
+                                                        <FaChalkboardTeacher></FaChalkboardTeacher>
+                                                    </button>
+                                                </>
+                                            )}
+                                        </td>
                                         <td>
                                             <button onClick={() => { handleUserDelete(user._id) }} className="btn btn-square btn-outline">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
